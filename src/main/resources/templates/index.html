@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
     
 <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-        <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0"/>
+        <link rel="shortcut icon" type="image/x-icon" th:href="@{/assets/img/favicon.png}"/>
         <title>Dashboard - NFC Patrol System</title>
-		<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css">
-        <link rel="stylesheet" type="text/css" href="assets/css/line-awesome.min.css">
-		<link rel="stylesheet" type="text/css" href="assets/plugins/morris/morris.css">
-        <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+		<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" rel="stylesheet"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/assets/css/bootstrap.min.css}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/assets/css/font-awesome.min.css}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/assets/css/line-awesome.min.css}"/>
+		<link rel="stylesheet" type="text/css" th:href="@{/assets/plugins/morris/morris.css}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/assets/css/style.css}"/>
 		<!--[if lt IE 9]>
 			<script src="assets/js/html5shiv.min.js"></script>
 			<script src="assets/js/respond.min.js"></script>
@@ -22,7 +22,7 @@
             <div class="header">
                 <div class="header-left">
                     <a href="index.html" class="logo">
-						<img src="assets/img/logo.png" alt="" width="40" height="40">
+						<img th:src="@{/assets/img/logo.png}" alt="" width="40" height="40"/>
 					</a>
                 </div>
 				<a id="toggle_btn" href="javascript:void(0);"><i class="la la-bars"></i></a>
@@ -43,7 +43,7 @@
 										<a href="activities.html">
 											<div class="media-left">
 												<span class="avatar">
-													<img alt="John Doe" src="assets/img/user.jpg" class="img-responsive img-circle">
+													<img alt="John Doe" src="@{/assets/img/user.jpg}" class="img-responsive img-circle"/>
 												</span>
 											</div>
 											<div class="media-body">
@@ -108,7 +108,7 @@
 					</li>	
 					<li class="dropdown">
 						<a href="profile.html" class="dropdown-toggle user-link" data-toggle="dropdown" title="Admin">
-							<span class="user-img"><img class="img-circle" src="assets/img/user.jpg" alt="Admin" width="40">
+							<span class="user-img"><img class="img-circle" src="@{assets/img/user.jpg}" alt="Admin" width="40"/>
 							<span class="status online"></span></span>
 							<span>Admin</span>
 							<i class="caret"></i>
@@ -743,13 +743,13 @@
 			</div>
         </div>
 		<div class="sidebar-overlay" data-reff="#sidebar"></div>
-        <script type="text/javascript" src="assets/js/jquery-3.2.1.min.js"></script>
-        <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="assets/js/jquery.slimscroll.js"></script>
-		<script type="text/javascript" src="assets/plugins/morris/morris.min.js"></script>
-		<script type="text/javascript" src="assets/plugins/raphael/raphael-min.js"></script>
-		<script type="text/javascript" src="assets/js/chart.js"></script>
-		<script type="text/javascript" src="assets/js/app.js"></script>
+        <script type="text/javascript" th:src="@{/assets/js/jquery-3.2.1.min.js}"></script>
+        <script type="text/javascript" th:src="@{/assets/js/bootstrap.min.js}"></script>
+		<script type="text/javascript" th:src="@{/assets/js/jquery.slimscroll.js}"></script>
+		<script type="text/javascript" th:src="@{/assets/plugins/morris/morris.min.js}"></script>
+		<script type="text/javascript" th:src="@{/assets/plugins/raphael/raphael-min.js}"></script>
+		<script type="text/javascript" th:src="@{/assets/js/chart.js}"></script>
+		<script type="text/javascript" th:src="@{/assets/js/app.js}"></script>
     
 
 	</body>
