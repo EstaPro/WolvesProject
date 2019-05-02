@@ -3,9 +3,14 @@ package ma.rfidmaroc.patrolmanager.entities;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
 
 
 @SuppressWarnings("serial")
@@ -15,11 +20,19 @@ public class Utilisateur implements Serializable{
 	@Id
 	@GeneratedValue
 	private Long id_user;
+	@Column(name="NOM",length=30)
+	@NotEmpty
 	private String nom;
+	@NotEmpty
 	private String prenom;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date date_naissance;
+	@NotEmpty
 	private String cin;
+	@NotEmpty
+	@Email
 	private String email;
+	@NotEmpty
 	private String telephone;
 	private String login;
 	private String password;
