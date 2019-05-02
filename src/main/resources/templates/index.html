@@ -43,7 +43,7 @@
 										<a href="activities.html">
 											<div class="media-left">
 												<span class="avatar">
-													<img alt="John Doe" src="@{/assets/img/user.jpg}" class="img-responsive img-circle"/>
+													<img alt="John Doe" th:src="@{/assets/img/user.jpg}" class="img-responsive img-circle"/>
 												</span>
 											</div>
 											<div class="media-body">
@@ -108,16 +108,16 @@
 					</li>	
 					<li class="dropdown">
 						<a href="profile.html" class="dropdown-toggle user-link" data-toggle="dropdown" title="Admin">
-							<span class="user-img"><img class="img-circle" src="@{assets/img/user.jpg}" alt="Admin" width="40"/>
+							<span class="user-img"><img class="img-circle" th:src="@{assets/img/user.jpg}" alt="Admin" width="40"/>
 							<span class="status online"></span></span>
-							<span>Admin</span>
+							<span th:inline="text" >[[${#httpServletRequest.remoteUser}]]</span>
 							<i class="caret"></i>
 						</a>
 						<ul class="dropdown-menu">
 							<li><a href="profile.html">My Profile</a></li>
 							<li><a href="edit-profile.html">Edit Profile</a></li>
 							<li><a href="settings.html">Settings</a></li>
-							<li><a href="login.html">Logout</a></li>
+							<li><a th:href="@{/login?logout}">Logout</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -127,7 +127,7 @@
 						<li><a href="profile.html">My Profile</a></li>
 						<li><a href="edit-profile.html">Edit Profile</a></li>
 						<li><a href="settings.html">Settings</a></li>
-						<li><a href="login.html">Logout</a></li>
+						<li><a th:href="@{/login?logout}">Logout</a></li>
 					</ul>
 				</div>
             </div>

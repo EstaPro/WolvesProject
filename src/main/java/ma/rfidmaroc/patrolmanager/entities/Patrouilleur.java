@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 
+@SuppressWarnings("serial")
 public class Patrouilleur implements Serializable{
 
 	

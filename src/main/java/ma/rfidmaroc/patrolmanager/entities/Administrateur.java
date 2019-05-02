@@ -1,6 +1,6 @@
 package ma.rfidmaroc.patrolmanager.entities;
 
-
+@SuppressWarnings("serial")
 public class Administrateur extends Responsable {
 
 	private Administrateur m_Administrateur;

@@ -1,7 +1,8 @@
 package ma.rfidmaroc.patrolmanager.entities;
 
 
-public class Responsable extends Personne {
+@SuppressWarnings("serial")
+public class Responsable extends Utilisateur {
 
 	private int matricule_resp;
 
