@@ -5,7 +5,7 @@
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0"/>
         <link rel="shortcut icon" type="image/x-icon" th:href="@{assets/img/favicon.png}"/>
-        <title>Users - NFC Patrol System</title>
+        <title>EditUsers - NFC Patrol System</title>
 		<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" rel="stylesheet"/>
         <link rel="stylesheet" type="text/css" th:href="@{assets/css/bootstrap.min.css}"/>
         <link rel="stylesheet" type="text/css" th:href="@{assets/css/font-awesome.min.css}"/>
@@ -43,19 +43,6 @@
 									<li class="media notification-message">
 										<a href="activities.html">
 											<div class="media-left">
-												<span class="avatar">
-													<img alt="John Doe" th:src="@{assets/img/user.jpg}" class="img-responsive img-circle"/>
-												</span>
-											</div>
-											<div class="media-body">
-												<p class="m-0 noti-details"><span class="noti-title">John Doe</span> added new task <span class="noti-title">Patient appointment booking</span></p>
-												<p class="m-0"><span class="notification-time">4 mins ago</span></p>
-											</div>
-										</a>
-									</li>
-									<li class="media notification-message">
-										<a href="activities.html">
-											<div class="media-left">
 												<span class="avatar">V</span>
 											</div>
 											<div class="media-body">
@@ -64,39 +51,7 @@
 											</div>
 										</a>
 									</li>
-									<li class="media notification-message">
-										<a href="activities.html">
-											<div class="media-left">
-												<span class="avatar">L</span>
-											</div>
-											<div class="media-body">
-												<p class="m-0 noti-details"><span class="noti-title">Misty Tison</span> added <span class="noti-title">Domenic Houston</span> and <span class="noti-title">Claire Mapes</span> to project <span class="noti-title">Doctor available module</span></p>
-												<p class="m-0"><span class="notification-time">8 mins ago</span></p>
-											</div>
-										</a>
-									</li>
-									<li class="media notification-message">
-										<a href="activities.html">
-											<div class="media-left">
-												<span class="avatar">G</span>
-											</div>
-											<div class="media-body">
-												<p class="m-0 noti-details"><span class="noti-title">Rolland Webber</span> completed task <span class="noti-title">Patient and Doctor video conferencing</span></p>
-												<p class="m-0"><span class="notification-time">12 mins ago</span></p>
-											</div>
-										</a>
-									</li>
-									<li class="media notification-message">
-										<a href="activities.html">
-											<div class="media-left">
-												<span class="avatar">V</span>
-											</div>
-											<div class="media-body">
-												<p class="m-0 noti-details"><span class="noti-title">Bernardo Galaviz</span> added new task <span class="noti-title">Private chat module</span></p>
-												<p class="m-0"><span class="notification-time">2 days ago</span></p>
-											</div>
-										</a>
-									</li>
+								
 								</ul>
 							</div>
 							<div class="topnav-dropdown-footer">
@@ -189,82 +144,7 @@
                 </div>
             </div>
             <div class="page-wrapper">
-                <div class="content container-fluid">
-					<div class="row">
-						<div class="col-xs-4">
-							<h4 class="page-title">Utilisateurs</h4>
-						</div>
-						<div class="col-xs-8 text-right m-b-30">
-							<a href="#" class="btn btn-primary rounded" data-toggle="modal" data-target="#add_user"><i class="fa fa-plus"></i> Ajouter utilisateur</a>
-						</div>
-                    </div>
-                    <form th:action="@{users}" method="get">
-                        <div class="row filter-row">
-						<div class="col-sm-3 col-xs-6">  
-							<div class="form-group form-focus">
-								<label class="control-label">Name</label>
-                                <input type="text" class="form-control floating" name="motCle"/>
-                                
-							</div>
-                        </div>
-                        
-                        <div class="col-sm-3 col-xs-6">  
-							<button class="btn btn-success btn-block" type="submit"> Search </button>  
-						</div>
-                        </div>
-                    </form>	
-
-					<div class="row">
-						<div class="col-md-12">
-							<div class="table-responsive">
-								<table class="table table-striped custom-table">
-									<thead>
-										<tr>
-                                            <th>Identifiant</th>
-											<th style="width:30%;">Nom</th>
-											<th>Prénom</th>
-											<th>CIN</th>
-											<th>Date de naissance</th>
-											<th>Téléphone</th>
-											<th>Email</th>
-											
-											<th class="text-right">Action</th>
-										</tr>
-									</thead>
-									<tbody>
-                                        <tr th:each="u:${pageUtilisateurs.content}">
-                                             <td th:text="${u.id_user}"></td>
-                                             <td th:text="${u.nom}"></td>
-                                             <td th:text="${u.prenom}"></td>
-                                             <td th:text="${u.cin}"></td>
-                                             <td th:text="${u.date_naissance}"></td>
-                                             <td th:text="${u.telephone}"></td>
-                                             <td th:text="${u.email}"></td>
-                                             <td class="text-right">
-												<div class="dropdown">
-													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-													<ul class="dropdown-menu pull-right">
-														<li><a th:href="@{edit(id=${u.id_user})}"><i class="fa fa-pencil m-r-5"></i> Modifier</a></li>
-														<li><a onclick="return confirm('Etes-vous sûr de vouloir supprimer?')" th:href="@{supprimer(id=${u.id_user})}"><i class="fa fa-trash-o m-r-5"></i> Supprimer</a></li>
-													</ul>
-												</div>
-											</td>
-                                        </tr>
-									</tbody>
-                                </table>
-							</div>
-						</div>
-					</div>
-                </div>
-
-                <div class="container">
-                    <ul class="nav nav-pills">
-                        <li th:each="p:${pages}" th:class="${p==pageCourante}?active:''">
-                             <a th:text="${p}" th:href="@{users(page=${p})}"></a>
-                        </li>
-                    </ul>
-                </div>
-
+               
 				<div class="notification-box">
 					<div class="msg-sidebar notifications msg-noti">
 						<div class="topnav-dropdown-header">
@@ -272,14 +152,15 @@
 						</div>
 						<div class="drop-scroll msg-list-scroll">
 							<ul class="list-box">
+															
 								<li>
 									<a href="chat.html">
 										<div class="list-item">
 											<div class="list-left">
-												<span class="avatar">T</span>
+												<span class="avatar">M</span>
 											</div>
 											<div class="list-body">
-												<span class="message-author">Tarah Shropshire</span>
+												<span class="message-author">Mike Litorus</span>
 												<span class="message-time">12:28 AM</span>
 												<div class="clearfix"></div>
 												<span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
@@ -287,6 +168,7 @@
 										</div>
 									</a>
 								</li>
+								
 							</ul>
 						</div>
 						<div class="topnav-dropdown-footer">
@@ -294,17 +176,16 @@
 						</div>
 					</div>
 				</div>
-            </div>
-			<div id="add_user" class="modal custom-modal fade" role="dialog">
-				<div class="modal-dialog">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<div class="modal-content modal-lg">
-						<div class="modal-header">
-							<h4 class="modal-title">Ajouter utilisateur</h4>
-						</div>
-						<div class="modal-body">
-							<form th:action="@{SaveUtilisateur}" class="m-b-30" method="post" th:object="${utilisateur}">
+
+                <div class="modal-body">
+							<form th:action="@{UpdateUtilisateur}" class="m-b-30" method="post" th:object="${utilisateur}">
 								<div class="row">
+                                    <div class="col-md-6">
+										<div class="form-group">
+											<label class="control-label">ID </label>
+											<input class="form-control" type="text" th:field="*{id_user}" readonly="readonly"/>
+										</div>
+									</div>
 									<div class="col-md-6">
 										<div class="form-group">
 											<label class="control-label">Prénom <span class="text-danger">*</span></label>
@@ -380,101 +261,14 @@
 								</div>
 								
 								<div class="m-t-20 text-center">
-									<button class="btn btn-primary">Créer utilisateur</button>
+									<button class="btn btn-primary">Valider modification</button>
 								</div>
 							</form>
 						</div>
-					</div>
-				</div>
-			</div>
-			<div id="edit_user" class="modal custom-modal fade" role="dialog">
-				<div class="modal-dialog">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<div class="modal-content modal-lg">
-						<div class="modal-header">
-							<h4 class="modal-title">Edit User</h4>
-						</div>
-						<div class="modal-body">
-							<form class="m-b-30">
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											<label class="control-label">First Name <span class="text-danger">*</span></label>
-											<input class="form-control" value="John" type="text"/>
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label class="control-label">Last Name</label>
-											<input class="form-control" value="Doe" type="text"/>
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label class="control-label">Username <span class="text-danger">*</span></label>
-											<input class="form-control" value="johndoe" type="text"/>
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label class="control-label">Email <span class="text-danger">*</span></label>
-											<input class="form-control" value="johndoe@example.com" type="email"/>
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label class="control-label">Password</label>
-											<input class="form-control" type="password"/>
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label class="control-label">Confirm Password</label>
-											<input class="form-control" type="password"/>
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label class="control-label">Phone </label>
-											<input class="form-control" value="9876543210" type="text"/>
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label class="control-label">Role</label>
-											<select class="select">
-												<option>Admin</option>
-												<option>Client</option>
-												<option>Employee</option>
-											</select>
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label class="control-label">Company</label>
-											<select class="select">
-												<option>Global Technologies</option>
-												<option>Delta Infotech</option>
-											</select>
-										</div>
-									</div>
-									<div class="col-md-6">  
-										<div class="form-group">
-											<label class="control-label">Employee ID <span class="text-danger">*</span></label>
-											<input type="text" value="FT-0001" class="form-control floating"/>
-										</div>
-								   </div>
-								</div>
-								
-								<div class="m-t-20 text-center">
-									<button class="btn btn-primary">Edit User</button>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
+
+            </div>
 			
+	
         </div>
 		<div class="sidebar-overlay" data-reff="#sidebar"></div>
         <script type="text/javascript" th:src="@{assets/js/jquery-3.2.1.min.js}"></script>
