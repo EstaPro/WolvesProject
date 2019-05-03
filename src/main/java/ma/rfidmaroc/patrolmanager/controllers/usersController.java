@@ -13,22 +13,26 @@ import ma.rfidmaroc.patrolmanager.dao.UtilisateurRepository;
 import ma.rfidmaroc.patrolmanager.entities.Utilisateur;
 
 @Controller
-public class homeController {
+public class usersController {
+
+	@Autowired
+	private UtilisateurRepository utilisateurRepository;
 	
-		
-	@RequestMapping(value="/home")
-	public String homeController() {
-		return "index";
+	@RequestMapping(value="/users", method=RequestMethod.GET)
+	public String usersController(Model model) {
+		model.addAttribute("utilisateur", new Utilisateur());
+		return "users";
 	}
 	
-	@RequestMapping(value="/")
-	public String homePage() {
-		return "redirect:home";
+	@RequestMapping(value="/SaveUtilisateur", method=RequestMethod.POST)
+	public String save(@Valid Utilisateur user, BindingResult bindingResult) {
+		if(bindingResult.hasErrors())
+		{
+			return "users";
+		}
+		utilisateurRepository.save(user);
+		return "users";
 	}
 	
-	@RequestMapping(value="/login")
-	public String loginController() {
-		return "login";
-	}
 	
 }
