@@ -335,7 +335,7 @@
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											<label class="control-label">Login </label>
+											<label class="control-label">Login <span class="text-danger">*</span></label>
 											<input class="form-control" type="text" th:field="*{login}"/>
                                             <span class="text-danger" th:errors="*{login}"></span>
 										</div>
@@ -349,15 +349,19 @@
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											<label class="control-label">Mot de passe </label>
-											<input class="form-control" type="password" th:field="*{password}"/>
-                                            <span class="text-danger" th:errors="*{password}"></span>
+											<label class="control-label">Mot de passe <span class="text-danger">*</span></label>
+											<input class="form-control" type="password"  th:field="*{password}"	
+											required="true" maxlength="30" onblur="valide_mdp(this)" onfocus="retirer_style(this)"/>
+                                            <span class="error"></span>
+											<span class="text-danger" th:errors="*{password}"></span>
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											<label class="control-label">Confirmer mot de passe</label>
-											<input class="form-control" type="password"/>
+											<label class="control-label">Confirmer mot de passe <span class="text-danger">*</span></label>
+											<input class="form-control" type="password" 
+											required="true" maxlength="30" onblur="valide_mdp_con(oldmdp,this)" onfocus="retirer_style(this)"/>
+											<span class="error"></span>
 										</div>
 									</div>
 									<div class="col-md-6">
@@ -486,5 +490,6 @@
 		<script type="text/javascript" th:src="@{assets/js/moment.min.js}"></script>
 		<script type="text/javascript" th:src="@{assets/js/bootstrap-datetimepicker.min.js}"></script>
 		<script type="text/javascript" th:src="@{assets/js/app.js}"></script>
+		<script type="text/javascript" th:src="@{assets/js/validationScript.js}"></script>
     </body>
 </html>
