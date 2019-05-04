@@ -1,6 +1,8 @@
 package ma.rfidmaroc.patrolmanager.entities;
 
-public class Checkpoint {
+import java.io.Serializable;
+
+public class Checkpoint implements Serializable{
 
 	private Long id_checkpoint;
 	private String geo_location;

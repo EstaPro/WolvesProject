@@ -1,18 +1,33 @@
 package ma.rfidmaroc.patrolmanager.entities;
 
+import java.io.Serializable;
+import java.util.Date;
 
-public class Reclamation extends Activite {
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+//@Entity
+//@DiscriminatorValue("RC")
+public class Reclamation extends Activite implements Serializable{
 
 	private int id_rec;
 	private String description;
 	private String imgPath;
+//	@ManyToOne
+//	@JoinColumn(name="ID_PAT")
+	private Patrouilleur patrouilleur;
 
 	public Reclamation(){
 
 	}
 
-	public void finalize() throws Throwable {
-		super.finalize();
+	public Reclamation(Date date_activite, String geo_localisation, String description, String imgPath, Patrouilleur patrouilleur) {
+		super(date_activite, geo_localisation);
+		this.description = description;
+		this.imgPath = imgPath;
+		this.patrouilleur = patrouilleur;
 	}
 
 	public int getId_rec() {
@@ -38,7 +53,4 @@ public class Reclamation extends Activite {
 	public void setImgPath(String imgPath) {
 		this.imgPath = imgPath;
 	}
-	
-	
-
 }

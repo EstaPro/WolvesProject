@@ -3,44 +3,45 @@ package ma.rfidmaroc.patrolmanager.entities;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
-
+@Entity
 @SuppressWarnings("serial")
-public class Patrouilleur implements Serializable{
+@DiscriminatorValue("PATR")
+public class Patrouilleur extends Utilisateur implements Serializable {
 
-	
-	private Long id_patr;
-	private String matricule_patr;
+//	@OneToMany(mappedBy="patrouilleur")
+	private Pointage pointage;
+//	@OneToMany(mappedBy="patrouilleur")
+	private Reclamation reclamation;
 
-	public Patrouilleur(){
+	public Patrouilleur() {
 		super();
 	}
 
-//	public Patrouilleur(String nom, String prenom, Date date_naissance, String cin, String email, String telephone, String mat) {
-//		super(nom, prenom, date_naissance, cin, email, telephone);
-//		this.matricule_patr = mat;
-//	}
-
-	public void finalize() throws Throwable {
-		super.finalize();
-	}
-	
-	public Long getId_patr() {
-		return id_patr;
+	public Patrouilleur(String nom,String prenom, Date date_naissance, String cin, String telephone, String login, String password,
+			Boolean active) {
+		super(nom, prenom, date_naissance, cin, telephone, login, password, active);
 	}
 
-	public void setId_patr(Long id_patr) {
-		this.id_patr = id_patr;
+	public Pointage getPointage() {
+		return pointage;
 	}
 
-	public String getMatricule_patr() {
-		return matricule_patr;
+	public void setPointage(Pointage pointage) {
+		this.pointage = pointage;
 	}
 
-	public void setMatricule_patr(String matricule_patr) {
-		this.matricule_patr = matricule_patr;
+	public Reclamation getReclamation() {
+		return reclamation;
 	}
+
+	public void setReclamation(Reclamation reclamation) {
+		this.reclamation = reclamation;
+	}
+
 }

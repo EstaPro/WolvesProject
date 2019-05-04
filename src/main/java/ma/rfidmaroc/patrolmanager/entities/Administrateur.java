@@ -1,19 +1,29 @@
 package ma.rfidmaroc.patrolmanager.entities;
 
-@SuppressWarnings("serial")
-public class Administrateur extends Responsable {
+import java.io.Serializable;
+import java.util.Date;
 
-	private Administrateur m_Administrateur;
+@SuppressWarnings("serial")
+public class Administrateur extends Responsable implements Serializable{
+
+	private String email;
 
 	public Administrateur(){
 
 	}
 
-	public Administrateur getM_Administrateur() {
-		return m_Administrateur;
+	public Administrateur(String nom, String prenom, Date date_naissance, String cin, String telephone, String email,
+			String login, String password, String mat, Boolean active) {
+		super(nom, prenom, date_naissance, cin, telephone, email, login, password, mat, active);
+		this.email = email;
 	}
 
-	public void setM_Administrateur(Administrateur m_Administrateur) {
-		this.m_Administrateur = m_Administrateur;
+	public String getEmail() {
+		return email;
 	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
 }
