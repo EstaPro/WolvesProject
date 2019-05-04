@@ -75,6 +75,14 @@ public abstract class Utilisateur implements Serializable{
 	public void setRoles(Collection<Role> roles) {
 		this.roles = roles;
 	}
+	
+	public Long getId_user() {
+		return id_user;
+	}
+	
+	public void setId_user(Long id_user) {
+		this.id_user=id_user;
+	}
 
 	public String getNom() {
 		return nom;
