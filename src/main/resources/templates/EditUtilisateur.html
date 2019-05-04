@@ -180,20 +180,20 @@
                 <div class="modal-body">
 							<form th:action="@{UpdateUtilisateur}" class="m-b-30" method="post" th:object="${utilisateur}">
 								<div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
 										<div class="form-group">
 											<label class="control-label">ID </label>
 											<input class="form-control" type="text" th:field="*{id_user}" readonly="readonly"/>
 										</div>
 									</div>
-									<div class="col-md-6">
+									<div class="col-md-4">
 										<div class="form-group">
 											<label class="control-label">Prénom <span class="text-danger">*</span></label>
 											<input class="form-control" type="text" th:field="*{prenom}"/>
                                             <span class="text-danger" th:errors="*{prenom}"></span>
 										</div>
 									</div>
-									<div class="col-md-6">
+									<div class="col-md-4">
 										<div class="form-group">
 											<label class="control-label">Nom <span class="text-danger">*</span></label>
 											<input class="form-control" type="text" th:field="*{nom}"/>
@@ -208,7 +208,7 @@
 										</div>
 									</div>
                                     <div class="col-md-6">
-										<div class="form-group">
+										<div class="form-group cal-icon">
 											<label class="control-label">Date naissance <span class="text-danger">*</span></label>
 											<input class="form-control" type="date" th:field="*{date_naissance}"/>
                                             <span class="text-danger" th:errors="*{date_naissance}"></span>

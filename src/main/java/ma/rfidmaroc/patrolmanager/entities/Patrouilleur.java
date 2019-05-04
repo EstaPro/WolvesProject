@@ -25,7 +25,7 @@ public class Patrouilleur extends Utilisateur implements Serializable {
 
 	public Patrouilleur(String nom,String prenom, Date date_naissance, String cin, String telephone, String login, String password,
 			Boolean active) {
-		super(nom, prenom, date_naissance, cin, telephone, login, password, active);
+		super(nom, prenom, date_naissance, cin,null , telephone, login, password, active);
 	}
 
 	public Pointage getPointage() {

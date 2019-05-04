@@ -10,24 +10,22 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-
 @Entity
-@Table(name="roles")
-public class Role implements Serializable{
+@Table(name = "roles")
+public class Role implements Serializable {
 
-	@Id @GeneratedValue
+	@Id
+	@GeneratedValue
 	private Long id_role;
 	private String role_libelle;
-	
-	
-	@ManyToMany(mappedBy="roles")
+
+	@ManyToMany(mappedBy = "roles")
 	private Collection<Utilisateur> users;
-	
-	
+
 	public Role() {
 	}
 
-	public Role( String role_libelle) {
+	public Role(String role_libelle) {
 		super();
 		this.role_libelle = role_libelle;
 	}
@@ -55,8 +53,5 @@ public class Role implements Serializable{
 	public void setUser(Collection<Utilisateur> users) {
 		this.users = users;
 	}
-	
-	
-	
-	
+
 }

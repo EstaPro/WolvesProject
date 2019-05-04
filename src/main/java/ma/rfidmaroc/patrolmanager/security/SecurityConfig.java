@@ -32,7 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //		auth.jdbcAuthentication()
 //		.dataSource(dataSource)
 //		.usersByUsernameQuery("select login as principal, password as credentials, active from utilisateur where login=?")
-//		.authoritiesByUsernameQuery("select login as principal, role from users_roles");
+//		.authoritiesByUsernameQuery("select login as principal, role from user_role");
 	}
 	
 	@Override

@@ -2,15 +2,26 @@ package ma.rfidmaroc.patrolmanager.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 
 public class homeController {
 
-	@RequestMapping(value="/home")
+	@RequestMapping(value="/pageAccueil")
 	public String homeController() {
 		return "index";
 	}
 	
+	
+	@RequestMapping(value="/")
+	public String index() {
+		return "redirect:pageAccueil";
+	}
+	
+	@RequestMapping(value="/login")
+	public String loginController() {
+		return "login";
+	}
 
 }

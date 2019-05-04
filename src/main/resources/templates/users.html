@@ -239,7 +239,7 @@
                                              <td th:text="${u.cin}"></td>
                                              <td th:text="${u.date_naissance}"></td>
                                              <td th:text="${u.telephone}"></td>
-                                             <td th:text="${u.email}"></td>
+                                             <td text=""></td>
                                              <td class="text-right">
 												<div class="dropdown">
 													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
@@ -327,9 +327,9 @@
 										</div>
 									</div>
                                     <div class="col-md-6">
-										<div class="form-group">
-											<label class="control-label">Date naissance <span class="text-danger">*</span></label>
-											<input class="form-control" type="date" th:field="*{date_naissance}"/>
+										<label class="control-label">Date naissance <span class="text-danger">*</span></label>
+										<div class="form-group cal-icon">
+											<input class="form-control datetimepicker" type="text" th:field="*{date_naissance}"/>
                                             <span class="text-danger" th:errors="*{date_naissance}"></span>
 										</div>
 									</div>
@@ -342,7 +342,7 @@
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											<label class="control-label">Email <span class="text-danger">*</span></label>
+											<label class="control-label">Email</label>
 											<input class="form-control" type="email" th:field="*{email}"/>
                                             <span class="text-danger" th:errors="*{email}"></span>
 										</div>

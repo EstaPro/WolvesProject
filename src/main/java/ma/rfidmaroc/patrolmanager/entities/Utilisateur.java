@@ -17,6 +17,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -24,24 +25,31 @@ import org.springframework.format.annotation.DateTimeFormat;
 @SuppressWarnings("serial")
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="TYPE_USR", discriminatorType=DiscriminatorType.STRING, length=5)
-public abstract class Utilisateur implements Serializable{
+@DiscriminatorColumn(name="TYPE_USR", discriminatorType=DiscriminatorType.STRING)
+public class Utilisateur implements Serializable{
 
 	@Id
 	@GeneratedValue
 	private Long id_user;
-	@Column(name="NOM",length=30)
+	@Column(length=15)
 	@NotEmpty
 	private String nom;
+	@Column(length=15)
 	@NotEmpty
 	private String prenom;
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date date_naissance;
 	@NotEmpty
 	private String cin;
+	@Email
+	private String email;
+	@Column(length=10)
 	@NotEmpty
 	private String telephone;
+	@Column(length=30)
+	@NotEmpty
 	private String login;
+	@Column(length=30)
 	private String password;
 	private Boolean active;
 	
@@ -55,13 +63,14 @@ public abstract class Utilisateur implements Serializable{
 
 	}
 
-	public Utilisateur(String nom, String prenom, Date date_naissance, String cin, String telephone, String login,
+	public Utilisateur(String nom, String prenom, Date date_naissance, String cin, String email, String telephone, String login,
 			String password, Boolean active) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
 		this.date_naissance = date_naissance;
 		this.cin = cin;
+		this.email = email;
 		this.telephone = telephone;
 		this.login = login;
 		this.password = password;
@@ -94,6 +103,14 @@ public abstract class Utilisateur implements Serializable{
 
 	public String getPrenom() {
 		return prenom;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public void setPrenom(String prenom) {
