@@ -9,9 +9,27 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" th:href="@{/assets/css/bootstrap.min.css}" />
     <link rel="stylesheet" type="text/css" th:href="@{/assets/css/font-awesome.min.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/assets/css/dataTables.bootstrap.min.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/assets/css/line-awesome.min.css}" />
     <link rel="stylesheet" type="text/css" th:href="@{/assets/plugins/morris/morris.css}" />
-    <link rel="stylesheet" type="text/css" th:href="@{/assets/css/style.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/assets/css/select2.min.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/assets/css/bootstrap-datetimepicker.min.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/assets/css/style.css}" />
+	
+ 	<script type="text/javascript" th:src="@{/assets/js/jquery-3.2.1.min.js}"></script>
+	<script type="text/javascript" th:src="@{/assets/js/bootstrap.min.js}"></script>
+	<script type="text/javascript" th:src="@{/assets/js/jquery.slimscroll.js}"></script>
+	<script type="text/javascript" th:src="@{/assets/plugins/morris/morris.min.js}"></script>
+	<script type="text/javascript" th:src="@{/assets/js/dataTables.bootstrap.min.js}"></script>
+	<script type="text/javascript" th:src="@{/assets/plugins/raphael/raphael-min.js}"></script>
+	<script type="text/javascript" th:src="@{/assets/js/chart.js}"></script>
+	<script type="text/javascript" th:src="@{/assets/js/app.js}"></script>
+	<script type="text/javascript" th:src="@{/assets/js/moment.min.js}"></script>
+	<script type="text/javascript" th:src="@{/assets/js/bootstrap-datetimepicker.min.js}"></script>
+	<script type="text/javascript" th:src="@{/assets/js/jquery.dataTables.min.js}"></script>
+	<script type="text/javascript" th:src="@{/assets/js/dataTables.bootstrap.min.js}"></script>
+	<script type="text/javascript" th:src="@{/assets/js/select2.min.js}"></script>
+	<script type="text/javascript" th:src="@{/assets/js/validationScript.js}"></script>
     <!--[if lt IE 9]>
 			<script src="assets/js/html5shiv.min.js"></script>
 			<script src="assets/js/respond.min.js"></script>
@@ -22,7 +40,7 @@
     <div class="main-wrapper">
         <div class="header">
             <div class="header-left">
-                <a href="index.html" class="logo">
+                <a th:href="@{/pageAccueil}" class="logo">
                     <img th:src="@{/assets/img/logo.png}" alt="" width="40" height="40" />
                 </a>
             </div>
@@ -43,7 +61,7 @@
                         <div class="drop-scroll">
                             <ul class="media-list">
                                 <li class="media notification-message">
-                                    <a href="activities.html">
+                                    <a th:href="@{/activities}">
                                         <div class="media-left">
                                             <span class="avatar">
                                                 <img alt="John Doe" th:src="@{/assets/img/user.jpg}"
@@ -58,7 +76,7 @@
                                     </a>
                                 </li>
                                 <li class="media notification-message">
-                                    <a href="activities.html">
+                                    <a th:href="@{/activities}">
                                         <div class="media-left">
                                             <span class="avatar">V</span>
                                         </div>
@@ -71,7 +89,7 @@
                                     </a>
                                 </li>
                                 <li class="media notification-message">
-                                    <a href="activities.html">
+                                    <a th:href="@{/activities}">
                                         <div class="media-left">
                                             <span class="avatar">L</span>
                                         </div>
@@ -85,7 +103,7 @@
                                     </a>
                                 </li>
                                 <li class="media notification-message">
-                                    <a href="activities.html">
+                                    <a th:href="@{/activities}">
                                         <div class="media-left">
                                             <span class="avatar">G</span>
                                         </div>
@@ -98,7 +116,7 @@
                                     </a>
                                 </li>
                                 <li class="media notification-message">
-                                    <a href="activities.html">
+                                    <a th:href="@{/activities}">
                                         <div class="media-left">
                                             <span class="avatar">V</span>
                                         </div>
@@ -112,7 +130,7 @@
                             </ul>
                         </div>
                         <div class="topnav-dropdown-footer">
-                            <a href="activities.html">View all Notifications</a>
+                            <a th:href="@{/activities}">Voir toutes les Notifications</a>
                         </div>
                     </div>
                 </li>
@@ -121,17 +139,17 @@
                         <span class="badge bg-purple pull-right">8</span></a>
                 </li>
                 <li class="dropdown">
-                    <a href="profile.html" class="dropdown-toggle user-link" data-toggle="dropdown" title="Admin">
-                        <span class="user-img"><img class="img-circle" th:src="@{assets/img/user.jpg}" alt="Admin"
+                    <a th:href="@{/profile}" class="dropdown-toggle user-link" data-toggle="dropdown" title="Admin">
+                        <span class="user-img"><img class="img-circle" th:src="@{/assets/img/user.jpg}" alt="Admin"
                                 width="40" />
                             <span class="status online"></span></span>
                         <span th:inline="text">[[${#httpServletRequest.remoteUser}]]</span>
 							<i class="caret"></i>
 						</a>
 						<ul class="dropdown-menu">
-							<li><a href="profile.html">My Profile</a></li>
-							<li><a href="edit-profile.html">Edit Profile</a></li>
-							<li><a href="settings.html">Settings</a></li>
+							<li><a th:href="@{/profile}">My Profile</a></li>
+							<li><a th:href="@{/edit-profile}">Edit Profile</a></li>
+							<li><a th:href="@{/settings}">Settings</a></li>
 							<li><a th:href="@{/login?logout}">Logout</a></li>
 						</ul>
 					</li>
@@ -139,9 +157,9 @@
 				<div class="dropdown mobile-user-menu pull-right">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
 					<ul class="dropdown-menu pull-right">
-						<li><a href="profile.html">My Profile</a></li>
-						<li><a href="edit-profile.html">Edit Profile</a></li>
-						<li><a href="settings.html">Settings</a></li>
+						<li><a th:href="@{/profile}">My Profile</a></li>
+						<li><a th:href="@{/edit-profile}">Edit Profile</a></li>
+						<li><a th:href="@{/settings}">Settings</a></li>
 						<li><a th:href="@{/login?logout}">Logout</a></li>
 					</ul>
 				</div>
@@ -151,31 +169,31 @@
 					<div id="sidebar-menu" class="sidebar-menu" style="display: block;">
 						<ul>
 							<li class="active"> 
-								<a href="index.html"><i class="la la-dashboard"></i> <span>Accueil</span></a>
+								<a th:href="@{/pageAccueil}"><i class="la la-dashboard"></i> <span>Accueil</span></a>
 							</li>
 							<li class="submenu">
 								<a href="#" class=""><i class="la la-group"></i> <span> Employées</span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
-									<li><a href="employees.html">Patrouilleurs</a></li>
-									<li><a href="employees.html">Responsables</a></li>
-									<li><a href="employees.html">Administrateurs</a></li>
+									<li><a th:href="@{/resp/patrouilleurs}">Patrouilleurs</a></li>
+									<li><a th:href="@{/admin/responsables}">Responsables</a></li>
+									<li><a th:href="@{/admin/admins}">Administrateurs</a></li>
 								</ul>
 							</li>
 							<li> 
-								<a href="assets.html"><i class="la la-connectdevelop"></i> <span>Rondes</span></a>
+								<a th:href="@{/resp/rondes}"><i class="la la-connectdevelop"></i> <span>Rondes</span></a>
 							</li><li> 
-								<a href="activities.html"><i class="la la-bell"></i> <span>Activitiés</span></a>
+								<a th:href="@{/activities}"><i class="la la-bell"></i> <span>Activitiés</span></a>
 							</li><li> 
-								<a href="worksheet.html"><i class="la la-clock-o"></i> <span>Timing Sheet</span></a>
+								<a th:href="@{/patrouilles}"><i class="la la-clock-o"></i> <span>patrouilles</span></a>
 							</li>
 							
 							
 							<li> 
-								<a href="events.html"><i class="la la-calendar"></i> <span>Programme</span></a>
+								<a th:href="@{/events}"><i class="la la-calendar"></i> <span>Programme</span></a>
 							</li>
 							
 							<li> 
-								<a th:href="@{users}"><i class="la la-user-plus"></i> <span>Users</span></a>
+								<a th:href="@{/admin/users}"><i class="la la-user-plus"></i> <span>Users</span></a>
 							</li>
 							<li class="submenu">
 								<a href="#" class=""><i class="la la-pie-chart"></i> <span>Rapport</span> <span class="menu-arrow"></span></a>
@@ -211,9 +229,9 @@
                 </section>
             
                 <footer class="navbar-fixed-bottom">
-                    <div class="container" style="align-content: left">
+                    <div class="container text-right">
                         <small>
-                            copyrights barouch_ship @2019
+                            rfidMaroc-WolvesTeam @2019
                         </small>
                     </div>
                 </footer>
@@ -431,14 +449,6 @@
 			</div>
         </div>
 		<div class="sidebar-overlay" data-reff="#sidebar"></div>
-        <script type="text/javascript" th:src="@{/assets/js/jquery-3.2.1.min.js}"></script>
-        <script type="text/javascript" th:src="@{/assets/js/bootstrap.min.js}"></script>
-		<script type="text/javascript" th:src="@{/assets/js/jquery.slimscroll.js}"></script>
-		<script type="text/javascript" th:src="@{/assets/plugins/morris/morris.min.js}"></script>
-		<script type="text/javascript" th:src="@{/assets/plugins/raphael/raphael-min.js}"></script>
-		<script type="text/javascript" th:src="@{/assets/js/chart.js}"></script>
-		<script type="text/javascript" th:src="@{/assets/js/app.js}"></script>
-    
 
 	</body>
 </html>

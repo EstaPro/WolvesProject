@@ -32,6 +32,7 @@
 										<div class="form-group form-focus">
 											<label class="control-label">Utilisateur</label>
 											<input class="form-control floating" name="username" type="text"/>
+											<span class="text-danger"></span>
 										</div>
 										<div class="form-group form-focus">
 											<label class="control-label">Mot de passe</label>
@@ -43,7 +44,7 @@
 											<button class="btn btn-primary btn-block account-btn" type="submit">Se connecter</button>
 										</div>
 										<div class="text-center">
-											<a href="forgot-password.html">mot de passe oublié?</a>
+											<a href="@{/forgot-password}">mot de passe oublié?</a>
 										</div>
 									</form>
 								</div>
@@ -55,6 +56,7 @@
 				<script type="text/javascript" th:src="@{/assets/js/jquery-3.2.1.min.js}"></script>
 				<script type="text/javascript" th:src="@{/assets/js/bootstrap.min.js}"></script>
 				<script type="text/javascript" th:src="@{/assets/js/app.js}"></script>	
+				<script type="text/javascript" th:src="@{assets/js/validationScript.js}"></script>
     </body>
 
 

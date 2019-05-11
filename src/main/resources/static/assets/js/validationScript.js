@@ -1,5 +1,7 @@
 var oldmdp = null; 
 
+var span_pos = 5;
+
 //Validation nom et prenom
 function valider_string(elem)
 {
@@ -7,22 +9,22 @@ function valider_string(elem)
 	var exp = new RegExp("^[a-zA-Z]+$", "g");
 	//Declaration
 	var val = elem.value;
-	var span = elem.parentNode.childNodes[3];
+	var span = elem.parentNode.childNodes[span_pos];
 	span.innerHTML="";
 	span.style.display="none";
 	//Validation
 	//Teste resultat validation
 	if(val.length==0)
 	{
-		elem.style.border="3px solid red";
-		span.innerHTML=elem.name+" obligatoire";
+		elem.style.border="1px solid red";
+		span.innerHTML = elem.name+" est obligatoire";
 		span.style.display="block";
 		return false;
 	}
 	else
 	if(val.length>20)
 	{
-		elem.style.border="3px solid red";
+		elem.style.border="1px solid red";
 		span.innerHTML=elem.name+" est très long";
 		span.style.display="block";
 		return false;
@@ -30,7 +32,51 @@ function valider_string(elem)
 	else
 	if(!exp.test(val))
 	{
-		elem.style.border="3px solid red";
+		elem.style.border="1px solid red";
+		span.innerHTML=elem.name+" invalide";
+		span.style.display="block";
+		return false;
+	}
+	else
+	{
+		elem.style.border="1px solid green";
+		span.innerHTML="";
+		span.style.display="none";
+		return true;
+	}
+}
+
+//Validation username
+function valider_username(elem)
+{
+	//Declaration d'une expression regulière
+	var exp = new RegExp("^[a-zA-Z1-9]+$", "g");
+	//Declaration
+	var val = elem.value;
+	var span = elem.parentNode.childNodes[span_pos];
+	span.innerHTML="";
+	span.style.display="none";
+	//Validation
+	//Teste resultat validation
+	if(val.length==0)
+	{
+		elem.style.border="1px solid red";
+		span.innerHTML = elem.name+" est obligatoire";
+		span.style.display="block";
+		return false;
+	}
+	else
+	if(val.length>15)
+	{
+		elem.style.border="1px solid red";
+		span.innerHTML=elem.name+" est très long";
+		span.style.display="block";
+		return false;
+	}
+	else
+	if(!exp.test(val))
+	{
+		elem.style.border="1px solid red";
 		span.innerHTML=elem.name+" invalide";
 		span.style.display="block";
 		return false;
@@ -45,13 +91,13 @@ function valider_string(elem)
 }
 
 //Email
-function valide_email(elem)
+function valider_email(elem)
 {
 	//Declaration d'une expression regulière
 	var email = /([\w-\.]+@[\w\.]+\.{1}[\w]+)/;
 	//Declaration
 	var val = elem.value;
-	var span = elem.parentNode.childNodes[5];
+	var span = elem.parentNode.childNodes[span_pos];
 	span.innerHTML="";
 	span.style.display="none";
 	//Validation
@@ -111,11 +157,11 @@ function ckeckDate(date)
 	return true;
 }
 
-function valide_date(elem)
+function valider_date(elem)
 {
 	//Declaration
 	var val = elem.value;
-	var span = elem.parentNode.childNodes[3];
+	var span = elem.parentNode.childNodes[span_pos];
 	span.innerHTML="";
 	span.style.display="none";
 	//Validation
@@ -152,13 +198,13 @@ function valide_date(elem)
 	}
 }
 
-function valide_numero(elem)
+function valider_numero(elem)
 {
 	//Expression regu
 	var numero = new RegExp("^[0-9]+$", "g");
 	//Declaration
 	var val = elem.value;
-	var span = elem.parentNode.childNodes[5];
+	var span = elem.parentNode.childNodes[span_pos];
 	span.innerHTML="";
 	span.style.display="none";
 	//Validation
@@ -204,13 +250,13 @@ function valide_numero(elem)
 }
 
 
-function valide_mdp(elem)
+function valider_mdp(elem)
 {
     
     oldmdp=elem;
 	//Declaration
 	var val = elem.value;
-	var span = elem.parentNode.childNodes[5];
+	var span = elem.parentNode.childNodes[span_pos];
 	span.innerHTML="";
 	span.style.display="none";
 	//Validation
@@ -239,13 +285,13 @@ function valide_mdp(elem)
 	}
 }
 
-function valide_mdp_con(old,nv)
+function valider_mdp_con(old,nv)
 {
 	//old mot de passe
 	var oldval = old.value;
 	//Nouveau mot de passe
 	var newval = nv.value;
-	var newspan = nv.parentNode.childNodes[5];
+	var newspan = nv.parentNode.childNodes[span_pos];
 	if(oldval.length>0)
 	{
 		if(newval.length==0)
@@ -273,7 +319,7 @@ function valide_mdp_con(old,nv)
 	}
 	else
 	{
-		valide_mdp(old);
+		valider_mdp(old);
 		nv.style.border="1px solid red";
 		newspan.innerHTML="champ obligatoire";
 		newspan.style.display="block";
@@ -285,7 +331,7 @@ function valide_mdp_con(old,nv)
 function retirer_style(elem)
 {
 	elem.style.border="1px solid #ccc;";
-	var span = elem.parentNode.childNodes[5];
+	var span = elem.parentNode.childNodes[span_pos];
 	span.innerHTML="";
 	span.style.display="none";
 }
@@ -295,7 +341,7 @@ function valider_image(elem)
 {
 	//Recuperer l'image
 	var img = elem.files[0];
-	var span = elem.parentNode.childNodes[3];
+	var span = elem.parentNode.childNodes[span_pos];
 	//retirer les erreurs
 	/*span.innerHTML="Fichier trop gros";
 	span.style.display="block";

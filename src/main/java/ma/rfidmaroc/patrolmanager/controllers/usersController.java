@@ -1,5 +1,12 @@
 package ma.rfidmaroc.patrolmanager.controllers;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,130 +16,99 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import ma.rfidmaroc.patrolmanager.dao.AdministrateurRepository;
+import ma.rfidmaroc.patrolmanager.dao.PatrouilleurRepository;
+import ma.rfidmaroc.patrolmanager.dao.ResponsableRepository;
+import ma.rfidmaroc.patrolmanager.dao.RoleRepository;
 import ma.rfidmaroc.patrolmanager.dao.UtilisateurRepository;
-import ma.rfidmaroc.patrolmanager.entities.Responsable;
-
-import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import ma.rfidmaroc.patrolmanager.entities.Administrateur;
+import ma.rfidmaroc.patrolmanager.entities.Responsable;
+import ma.rfidmaroc.patrolmanager.entities.Role;
 import ma.rfidmaroc.patrolmanager.entities.Utilisateur;
+import ma.rfidmaroc.patrolmanager.models.UserForm;
+import ma.rfidmaroc.patrolmanager.services.UtilisatateurServices;
 
 @Controller
+@RequestMapping(value = "/admin")
 public class usersController {
 
 	@Autowired
-	private UtilisateurRepository utilisateurRepository;
+	AdministrateurRepository administrateurRepository;
+	@Autowired
+	ResponsableRepository responsableRepository;
+	@Autowired
+	RoleRepository roleRepository;
+	@Autowired
+	PatrouilleurRepository patrouilleurRepository;
+	@Autowired
+	UtilisateurRepository userRepository;
+	@Autowired
+	UtilisatateurServices userService;
+	
+	DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 
 	@RequestMapping(value = "/users", method = RequestMethod.GET)
-	public String userController(Model model, @RequestParam(name = "page", defaultValue = "0") int p,
-			@RequestParam(name = "motCle", defaultValue = "") String mc) {
-		model.addAttribute("utilisateur", new Responsable());
+	public String userController(Model model, @RequestParam(name = "cin", defaultValue = "") String mc,
+			@RequestParam(name = "role", defaultValue = "") String role) {
+		model.addAttribute("utilisateur", new UserForm());
 
-		Page<Utilisateur> pageUtilisateurs = utilisateurRepository.chercherUtilisateurs("%" + mc + "%",
-				new PageRequest(p, 5));
-
-		int pagesCount = pageUtilisateurs.getTotalPages();
-		int[] pages = new int[pagesCount];
-		for (int i = 0; i < pagesCount; i++) {
-			pages[i] = i;
-		}
-
-		model.addAttribute("pages", pages);
-		model.addAttribute("pageUtilisateurs", pageUtilisateurs);
-		model.addAttribute("pageCourante", p);
+		List<Utilisateur> listUtilisateurs = userService.chercherUtilisateurs(mc,role);
+		
+		
+		model.addAttribute("listUtilisateurs", listUtilisateurs);
 		model.addAttribute("motCle", mc);
+		model.addAttribute("role", role);
 
-		return "users";
+		return "usersPage";
 	}
 
 	@RequestMapping(value = "/SaveUtilisateur", method = RequestMethod.POST)
-	public String save(@Valid Utilisateur user, BindingResult bindingResult, Model model,
-			@RequestParam(name = "page", defaultValue = "0") int p) {
+	public String save(@Valid UserForm userForm, BindingResult bindingResult) throws ParseException {
+		
+		if(bindingResult.hasErrors())
+			return "ajouterUserForm";
 
-		utilisateurRepository.save(user);
-		Page<Utilisateur> pageUtilisateurs = utilisateurRepository.findAll(new PageRequest(p, 5));
-
-		int pagesCount = pageUtilisateurs.getTotalPages();
-		int[] pages = new int[pagesCount];
-		for (int i = 0; i < pagesCount; i++) {
-			pages[i] = i;
-		}
-
-		model.addAttribute("pages", pages);
-		model.addAttribute("pageUtilisateurs", pageUtilisateurs);
-		model.addAttribute("pageCourante", p);
-
-		if (bindingResult.hasErrors()) {
-			return "users";
-		}
+		Utilisateur user = userService.saveUserFromUserForm(userForm);
 
 		return "redirect:users";
 	}
 
 	@RequestMapping(value = "/supprimer")
-	public String supprimer(Long id, Model model, @RequestParam(name = "page", defaultValue = "0") int p) {
-		utilisateurRepository.delete(id);
+	public String supprimer(Long id) {
+		
+		
+		userRepository.delete(id);
 
-		Page<Utilisateur> pageUtilisateurs = utilisateurRepository.findAll(new PageRequest(p, 5));
-
-		int pagesCount = pageUtilisateurs.getTotalPages();
-		int[] pages = new int[pagesCount];
-		for (int i = 0; i < pagesCount; i++) {
-			pages[i] = i;
-		}
-
-		model.addAttribute("pages", pages);
-		model.addAttribute("pageUtilisateurs", pageUtilisateurs);
-		model.addAttribute("pageCourante", p);
 
 		return "redirect:users";
 	}
 
 	@RequestMapping(value = "/edit")
-	public String edit(Long id, Model model, @RequestParam(name = "page", defaultValue = "0") int p) {
-		Utilisateur us = utilisateurRepository.getOne(id);
+	public String edit(Long id, Model model) {
+		
+		Utilisateur us = userRepository.getOne(id);
 		model.addAttribute("utilisateur", us);
-
-		Page<Utilisateur> pageUtilisateurs = utilisateurRepository.findAll(new PageRequest(p, 5));
-
-		int pagesCount = pageUtilisateurs.getTotalPages();
-		int[] pages = new int[pagesCount];
-		for (int i = 0; i < pagesCount; i++) {
-			pages[i] = i;
-		}
-
-		model.addAttribute("pages", pages);
-		model.addAttribute("pageUtilisateurs", pageUtilisateurs);
-		model.addAttribute("pageCourante", p);
 
 		return "EditUtilisateur";
 	}
 
 	@RequestMapping(value = "/UpdateUtilisateur", method = RequestMethod.POST)
-	public String update(@Valid Utilisateur user, BindingResult bindingResult, Model model,
-			@RequestParam(name = "page", defaultValue = "0") int p) {
-
-		utilisateurRepository.save(user);
-		Page<Utilisateur> pageUtilisateurs = utilisateurRepository.findAll(new PageRequest(p, 5));
-
-		int pagesCount = pageUtilisateurs.getTotalPages();
-		int[] pages = new int[pagesCount];
-		for (int i = 0; i < pagesCount; i++) {
-			pages[i] = i;
-		}
-
-		model.addAttribute("pages", pages);
-		model.addAttribute("pageUtilisateurs", pageUtilisateurs);
-		model.addAttribute("pageCourante", p);
-
+	public String update(@Valid Utilisateur user, BindingResult bindingResult) {
+		
 		if (bindingResult.hasErrors()) {
-			return "users";
+			return "EditUtilisateur";
 		}
 
+		System.out.println(user.getId_user());
+		System.out.println(user);
+
+		//userRepository.save(user);
+		
 		return "redirect:users";
 	}
-
 }

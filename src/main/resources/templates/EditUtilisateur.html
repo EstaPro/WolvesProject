@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorator="layout">
 
 <head>
         <meta charset="utf-8"/>
@@ -116,7 +117,7 @@
 							</li>
 							
 							<li class="active"> 
-								<a href="users.html"><i class="la la-user-plus"></i> <span>Users</span></a>
+								<a href="users"><i class="la la-user-plus"></i> <span>Users</span></a>
 							</li>
 							<li class="submenu">
 								<a href="#" class=""><i class="la la-pie-chart"></i> <span>Rapport</span> <span class="menu-arrow"></span></a>
@@ -177,7 +178,7 @@
 					</div>
 				</div>
 
-                <div class="modal-body">
+                <div class="modal-body"  layout:fragment="content">
 							<form th:action="@{UpdateUtilisateur}" class="m-b-30" method="post" th:object="${utilisateur}">
 								<div class="row">
                                     <div class="col-md-4">
@@ -208,9 +209,10 @@
 										</div>
 									</div>
                                     <div class="col-md-6">
+										<label class="control-label">Date naissance <span class="text-danger">*</span></label>
 										<div class="form-group cal-icon">
-											<label class="control-label">Date naissance <span class="text-danger">*</span></label>
-											<input class="form-control" type="date" th:field="*{date_naissance}"/>
+											<input class="form-control datetimepicker" type="text" th:field="*{date_naissance}"
+											onblur="valider_date(this)" onfocus="retirer_style(this)"/>
                                             <span class="text-danger" th:errors="*{date_naissance}"></span>
 										</div>
 									</div>
@@ -252,10 +254,23 @@
 										<div class="form-group">
 											<label class="control-label">Rôle</label>
 											<select class="select">
-												<option>Admin</option>
-												<option>Responsable</option>
-												<option>Patrouilleur</option>
+												<option th:selected="${utilisateur.roles.get(0).roleLibelle == 'ADMIN'?true:false}">Admin</option>
+												<option th:selected="${utilisateur.roles.get(0).roleLibelle == 'RESP'?true:false}">Responsable</option>
+												<option th:selected="${utilisateur.roles.get(0).roleLibelle == 'PATR'?true:false}">Patrouilleur</option>
 											</select>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<ul class="list-group">
+												<li class="list-group-item">
+													<label class="control-label">Compte Active</label>
+													<div class="material-switch pull-right">
+														<input id="staff_module" type="checkbox"/>
+														<label for="staff_module" class="label-success"></label>
+													</div>
+												</li>
+											</ul>
 										</div>
 									</div>
 								</div>

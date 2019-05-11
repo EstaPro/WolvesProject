@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorator="layoutUsers">
+
+             <div class="content container-fluid" layout:fragment="content">
+					<div class="row">
+						<div class="col-xs-4">
+							<h4 class="page-title">Utilisateurs</h4>
+						</div>
+						<div class="col-xs-8 text-right m-b-30">
+							<a href="#" class="btn btn-primary rounded" data-toggle="modal" data-target="#add_user"><i class="fa fa-plus"></i> Ajouter utilisateur</a>
+						</div>
+					</div>
+					<form th:action="@{users}" method="get">
+						<div class="row filter-row">
+							<div class="col-sm-4 col-xs-8">  
+								<div class="form-group form-focus">
+									<label class="control-label">CIN de l'utilisateur</label>
+									<input type="text" th:value="${motCle}" class="form-control floating" name="cin"/>
+								</div>
+							</div>
+							<div class="col-sm-4 col-xs-8"> 
+								<div class="form-group form-focus select-focus">
+									<label class="control-label">Role</label>
+									<select class="select floating" name="role" th:value="${role}">
+										<option value="">Selectionner le role</option>
+										<option value="admin" th:selected="${role=='admin'?true:false}">Administarateur</option>
+										<option value="resp" th:selected="${role=='resp'?true:false}">Responsable</option>
+										<option value="patr" th:selected="${role=='patr'?true:false}">Patrouilleur</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-sm-4 col-xs-8">  
+								<button type="submit" class="btn btn-success btn-block"> Chercher </button>  
+							</div>     
+						</div>
+					</form>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="table-responsive">
+								<table class="table table-striped custom-table datatable">
+									<thead>
+										<tr>
+                                            <th>Identifiant</th>
+											<th style="width:30%;">Nom</th>
+											<th>Prénom</th>
+											<th>CIN</th>
+											<th>Date de naissance</th>
+											<th>Téléphone</th>
+											<th>Email</th>
+											<th>Role</th>
+											
+											<th class="text-right">Action</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="u:${listUtilisateurs}">
+                                             <td th:text="${u.id_user}"></td>
+                                             <td th:text="${u.nom}"></td>
+                                             <td th:text="${u.prenom}"></td>
+                                             <td th:text="${u.cin}"></td>
+                                             <td th:text="${u.date_naissance}"></td>
+                                             <td th:text="${u.telephone}"></td>
+                                             <td th:text="${u.email}"></td>
+											 <td>
+												 <div th:each="r:${u.roles}" >	
+													<span th:text="${r.roleLibelle}" th:class="${r.roleLibelle=='RESP'?'label label-success-border':r.roleLibelle=='ADMIN'?'label label-danger-border':'label label-info-border'}"></span>
+												 </div>
+											</td>
+                                             <td class="text-right">
+												<div class="dropdown">
+													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+													<ul class="dropdown-menu pull-right">
+														<li><a th:href="@{edit(id=${u.id_user})}"><i class="fa fa-pencil m-r-5"></i> Modifier</a></li>
+														<li><a onclick="return confirm('Etes-vous sûr de vouloir supprimer?')" th:href="@{supprimer(id=${u.id_user})}"><i class="fa fa-trash-o m-r-5"></i> Supprimer</a></li>
+													</ul>
+												</div>
+											</td>
+                                        </tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+                </div>
+</html>

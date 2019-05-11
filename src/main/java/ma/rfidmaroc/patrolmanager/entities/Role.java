@@ -16,8 +16,8 @@ public class Role implements Serializable {
 
 	@Id
 	@GeneratedValue
-	private Long id_role;
-	private String role_libelle;
+	private Long idRole;
+	private String roleLibelle;
 
 	@ManyToMany(mappedBy = "roles")
 	private Collection<Utilisateur> users;
@@ -27,23 +27,23 @@ public class Role implements Serializable {
 
 	public Role(String role_libelle) {
 		super();
-		this.role_libelle = role_libelle;
+		this.roleLibelle = role_libelle;
 	}
 
 	public Long getId_role() {
-		return id_role;
+		return idRole;
 	}
 
 	public void setId_role(Long id_role) {
-		this.id_role = id_role;
+		this.idRole = id_role;
 	}
 
-	public String getRole_libelle() {
-		return role_libelle;
+	public String getRoleLibelle() {
+		return roleLibelle;
 	}
 
 	public void setRole_libelle(String role_libelle) {
-		this.role_libelle = role_libelle;
+		this.roleLibelle = role_libelle;
 	}
 
 	public Collection<Utilisateur> getUser() {

@@ -1,6 +1,8 @@
 package ma.rfidmaroc.patrolmanager.entities;
 
 import java.io.Serializable;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Collection;
 import java.util.Date;
 
@@ -16,10 +18,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+import javax.xml.bind.DatatypeConverter;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
+import ma.rfidmaroc.patrolmanager.tools.Tools;
 
 
 @SuppressWarnings("serial")
@@ -27,7 +34,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="TYPE_USR", discriminatorType=DiscriminatorType.STRING)
 public class Utilisateur implements Serializable{
-
+//	@UniqueConstraint(columnNames = { "cin", "telephone", "login", "email" })
 	@Id
 	@GeneratedValue
 	private Long id_user;
@@ -37,7 +44,7 @@ public class Utilisateur implements Serializable{
 	@Column(length=15)
 	@NotEmpty
 	private String prenom;
-	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@DateTimeFormat(pattern= "dd/MM/yyyy")
 	private Date date_naissance;
 	@NotEmpty
 	private String cin;
@@ -49,7 +56,6 @@ public class Utilisateur implements Serializable{
 	@Column(length=30)
 	@NotEmpty
 	private String login;
-	@Column(length=30)
 	private String password;
 	private Boolean active;
 	
@@ -64,8 +70,9 @@ public class Utilisateur implements Serializable{
 	}
 
 	public Utilisateur(String nom, String prenom, Date date_naissance, String cin, String email, String telephone, String login,
-			String password, Boolean active) {
+			String password, Boolean active){
 		super();
+		
 		this.nom = nom;
 		this.prenom = prenom;
 		this.date_naissance = date_naissance;
@@ -73,7 +80,7 @@ public class Utilisateur implements Serializable{
 		this.email = email;
 		this.telephone = telephone;
 		this.login = login;
-		this.password = password;
+		this.password = Tools.EncoderMD5(password);
 		this.active = active;
 	}
 
@@ -130,7 +137,7 @@ public class Utilisateur implements Serializable{
 	}
 
 	public void setPassword(String password) {
-		this.password = password;
+		this.password = Tools.EncoderMD5(password);
 	}
 
 	public Boolean getActive() {
