@@ -103,7 +103,31 @@
                                         </div>
                                     </a>
                                 </li>
-                               
+                                <li class="media notification-message">
+                                    <a th:href="@{activities}">
+                                        <div class="media-left">
+                                            <span class="avatar">G</span>
+                                        </div>
+                                        <div class="media-body">
+                                            <p class="m-0 noti-details"><span class="noti-title">Rolland Webber</span>
+                                                completed task <span class="noti-title">Patient and Doctor video
+                                                    conferencing</span></p>
+                                            <p class="m-0"><span class="notification-time">12 mins ago</span></p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="media notification-message">
+                                    <a th:href="@{activities}">
+                                        <div class="media-left">
+                                            <span class="avatar">V</span>
+                                        </div>
+                                        <div class="media-body">
+                                            <p class="m-0 noti-details"><span class="noti-title">Bernardo Galaviz</span>
+                                                added new task <span class="noti-title">Private chat module</span></p>
+                                            <p class="m-0"><span class="notification-time">2 days ago</span></p>
+                                        </div>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                         <div class="topnav-dropdown-footer">
@@ -157,7 +181,7 @@
 								</ul>
 							</li>
 							<li> 
-								<a th:href="@{/admin/checkpoint}"><i class="la la-connectdevelop"></i> <span>Points de contrôle</span></a>
+								<a th:href="@{/resp/rondes}"><i class="la la-connectdevelop"></i> <span>Rondes</span></a>
 							</li><li> 
 								<a th:href="@{/resp/activities}"><i class="la la-bell"></i> <span>Activitiés</span></a>
 							</li><li> 

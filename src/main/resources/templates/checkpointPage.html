@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorator="layoutCheckpoints">
+
+             <div class="content container-fluid" layout:fragment="content">
+					<div class="row">
+						<div class="col-xs-4">
+							<h4 class="page-title">Points de controle</h4>
+						</div>
+						<div class="col-xs-8 text-right m-b-30">
+							<a href="#" class="btn btn-primary rounded" data-toggle="modal" data-target="#add_user"><i class="fa fa-plus"></i> Ajouter point de controle</a>
+						</div>
+					</div>
+					<form th:action="@{checkpoint}" method="get">
+						<div class="row filter-row">
+							<div class="col-sm-4 col-xs-8">  
+								<div class="form-group form-focus">
+									<label class="control-label">Geo-localisation</label>
+									<input type="text" th:value="${motCle}" class="form-control floating" name="geo_location"/>
+								</div>
+							</div>
+							
+							<div class="col-sm-4 col-xs-8">  
+								<button type="submit" class="btn btn-success btn-block"> Chercher </button>  
+							</div>     
+						</div>
+					</form>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="table-responsive">
+								<table class="table table-striped custom-table datatable">
+									<thead>
+										<tr>
+                                            <th>Identifiant</th>
+											<th style="width:30%;">Geo-localisation</th>
+											<th class="text-right">Action</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="u:${listCheckpoints}">
+                                             <td th:text="${u.id_checkpoint}"></td>
+                                             <td th:text="${u.geo_location}"></td>
+                                             <td class="text-right">
+												<div class="dropdown">
+													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+													<ul class="dropdown-menu pull-right">
+														<li><a th:href="@{editCheckpoint(id=${u.id_checkpoint})}"><i class="fa fa-pencil m-r-5"></i> Modifier</a></li>
+														<li><a onclick="return confirm('Etes-vous sûr de vouloir supprimer?')" th:href="@{supprimerCheckpoint(id=${u.id_checkpoint})}"><i class="fa fa-trash-o m-r-5"></i> Supprimer</a></li>
+													</ul>
+												</div>
+											</td>
+                                        </tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+                </div>
+
+</html>

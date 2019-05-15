@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0"/>
+		<link rel="shortcut icon" type="image/x-icon" th:href="@{/assets/img/favicon.png}"/>
+        <title>Login - NFC Patrol System</title>
+		<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" rel="stylesheet"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/assets/css/bootstrap.min.css}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/assets/css/font-awesome.min.css}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/assets/css/style.css}"/>
+		<!--[if lt IE 9]>
+			<script src="assets/js/html5shiv.min.js"></script>
+			<script src="assets/js/respond.min.js"></script>
+		<![endif]-->
+    </head>
+    <body>
+
+			<div class="main-wrapper">
+					<div class="account-page">
+						
+						<div class="container">
+							<h3 class="account-title"></h3>
+							<div class="account-box">
+								<div class="account-wrapper">
+									<div class="account-logo">
+										<a href=""><img src="@{/assets/img/logo2.png}" alt="NFC Patrol Management"/></a>
+									</div>
+									
+									<form th:action="@{/login}" method="POST">
+										<div class="form-group form-focus">
+											<label class="control-label">Utilisateur</label>
+											<input class="form-control floating" name="username" type="text"/>
+											<span class="text-danger"></span>
+										</div>
+										<div class="form-group form-focus">
+											<label class="control-label">Mot de passe</label>
+											<input class="form-control floating" name="password" type="password"/>
+											<span class="text-danger"></span>
+										</div>
+										<span class="text-danger" th:if="${param.error}">Incorrect username or password</span>
+										<div class="form-group text-center">
+											<button class="btn btn-primary btn-block account-btn" type="submit">Se connecter</button>
+										</div>
+										<div class="text-center">
+											<a href="@{/forgot-password}">mot de passe oublié?</a>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="sidebar-overlay" data-reff="#sidebar"></div>
+				<script type="text/javascript" th:src="@{/assets/js/jquery-3.2.1.min.js}"></script>
+				<script type="text/javascript" th:src="@{/assets/js/bootstrap.min.js}"></script>
+				<script type="text/javascript" th:src="@{/assets/js/app.js}"></script>	
+				<script type="text/javascript" th:src="@{assets/js/validationScript.js}"></script>
+    </body>
+
+
+</html>

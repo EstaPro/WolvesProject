@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorator="layout">
+
+<head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0"/>
+        <link rel="shortcut icon" type="image/x-icon" th:href="@{assets/img/favicon.png}"/>
+        <title>EditUsers - NFC Patrol System</title>
+		<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" rel="stylesheet"/>
+        <link rel="stylesheet" type="text/css" th:href="@{assets/css/bootstrap.min.css}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{assets/css/font-awesome.min.css}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{assets/css/line-awesome.min.css}"/>
+		<link rel="stylesheet" type="text/css" th:href="@{assets/css/dataTables.bootstrap.min.css}"/>
+		<link rel="stylesheet" type="text/css" th:href="@{assets/css/select2.min.css}"/>
+		<link rel="stylesheet" type="text/css" th:href="@{assets/css/bootstrap-datetimepicker.min.css}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{assets/css/style.css}"/>
+		<!--[if lt IE 9]>
+			<script src="assets/js/html5shiv.min.js"></script>
+			<script src="assets/js/respond.min.js"></script>
+		<![endif]-->
+</head>
+    <body>
+        <div class="main-wrapper">
+            <div class="header">
+                <div class="header-left">
+                    <a href="index.html" class="logo">
+						<img th:src="@{assets/img/logo.png}" width="40" height="40" alt=""/>
+					</a>
+                </div>
+                <div class="page-title-box pull-left">
+					<h3>NFC Patrol Manager</h3>
+                </div>
+				<a id="mobile_btn" class="mobile_btn pull-left" href="#sidebar"><i class="fa fa-bars" aria-hidden="true"></i></a>
+				<ul class="nav navbar-nav navbar-right user-menu pull-right">
+					<li class="dropdown hidden-xs">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell-o"></i> <span class="badge bg-purple pull-right">3</span></a>
+						<div class="dropdown-menu notifications">
+							<div class="topnav-dropdown-header">
+								<span>Notifications</span>
+							</div>
+							<div class="drop-scroll">
+								<ul class="media-list">
+									<li class="media notification-message">
+										<a href="activities.html">
+											<div class="media-left">
+												<span class="avatar">V</span>
+											</div>
+											<div class="media-body">
+												<p class="m-0 noti-details"><span class="noti-title">Tarah Shropshire</span> changed the task name <span class="noti-title">Appointment booking with payment gateway</span></p>
+												<p class="m-0"><span class="notification-time">6 mins ago</span></p>
+											</div>
+										</a>
+									</li>
+								
+								</ul>
+							</div>
+							<div class="topnav-dropdown-footer">
+								<a href="activities.html">View all Notifications</a>
+							</div>
+						</div>
+					</li>
+					<li class="dropdown hidden-xs">
+						<a href="javascript:;" id="open_msg_box" class="hasnotifications"><i class="fa fa-comment-o"></i> <span class="badge bg-purple pull-right">8</span></a>
+					</li>	
+					<li class="dropdown">
+						<a href="profile.html" class="dropdown-toggle user-link" data-toggle="dropdown" title="Admin">
+							<span class="user-img"><img class="img-circle" th:src="@{assets/img/user.jpg}" width="40" alt="Admin"/>
+							<span class="status online"></span></span>
+							<span>Admin</span>
+							<i class="caret"></i>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a href="profile.html">My Profile</a></li>
+							<li><a href="edit-profile.html">Edit Profile</a></li>
+							<li><a href="settings.html">Settings</a></li>
+							<li><a href="login.html">Logout</a></li>
+						</ul>
+					</li>
+				</ul>
+				<div class="dropdown mobile-user-menu pull-right">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+					<ul class="dropdown-menu pull-right">
+						<li><a href="profile.html">My Profile</a></li>
+						<li><a href="edit-profile.html">Edit Profile</a></li>
+						<li><a href="settings.html">Settings</a></li>
+						<li><a href="login.html">Logout</a></li>
+					</ul>
+				</div>
+            </div>
+            <div class="sidebar" id="sidebar">
+                <div class="sidebar-inner slimscroll">
+					<div id="sidebar-menu" class="sidebar-menu">
+						<ul>
+							<li> 
+								<a href="index.html"><i class="la la-dashboard"></i> <span>Accueil</span></a>
+							</li>
+							<li class="submenu">
+								<a href="#" class=""><i class="la la-group"></i> <span> Employées</span> <span class="menu-arrow"></span></a>
+								<ul style="display: none;">
+									<li><a href="employees.html">Patrouilleurs</a></li>
+									<li><a href="employees.html">Responsables</a></li>
+									<li><a href="employees.html">Administrateurs</a></li>
+								</ul>
+							</li>
+							<li> 
+								<a href="assets.html"><i class="la la-connectdevelop"></i> <span>Rondes</span></a>
+							</li><li> 
+								<a href="activities.html"><i class="la la-bell"></i> <span>Activitiés</span></a>
+							</li><li> 
+								<a href="worksheet.html"><i class="la la-clock-o"></i> <span>Timing Sheet</span></a>
+							</li>
+							
+							
+							<li> 
+								<a href="events.html"><i class="la la-calendar"></i> <span>Programme</span></a>
+							</li>
+							
+							<li class="active"> 
+								<a href="users"><i class="la la-user-plus"></i> <span>Users</span></a>
+							</li>
+							<li class="submenu">
+								<a href="#" class=""><i class="la la-pie-chart"></i> <span>Rapport</span> <span class="menu-arrow"></span></a>
+								<ul style="display: none;">
+									<li><a href="expense-reports.html"> Expense Report </a></li>
+									<li><a href="invoice-reports.html"> Invoice Report </a></li>
+								</ul>
+							</li>
+							<li> 
+								<a href="settings.html"><i class="la la-cog"></i> <span>Settings</span></a>
+							</li>
+							<li> 
+								<a href="contacts.html"><i class="la la-book"></i> <span>Contacts</span></a>
+							</li><li class="submenu">
+								<a href="#" class=""><i class="la la-columns"></i> <span> Pages </span> <span class="menu-arrow"></span></a>
+								<ul style="display: none;">
+									<li><a href="login.html"> Login </a></li>
+									<li><a href="register.html"> Register </a></li>
+									<li><a href="forgot-password.html"> Forgot Password </a></li>
+									<li><a href="profile.html"> Profile </a></li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+                </div>
+            </div>
+            <div class="page-wrapper">
+               
+				<div class="notification-box">
+					<div class="msg-sidebar notifications msg-noti">
+						<div class="topnav-dropdown-header">
+							<span>Messages</span>
+						</div>
+						<div class="drop-scroll msg-list-scroll">
+							<ul class="list-box">
+															
+								<li>
+									<a href="chat.html">
+										<div class="list-item">
+											<div class="list-left">
+												<span class="avatar">M</span>
+											</div>
+											<div class="list-body">
+												<span class="message-author">Mike Litorus</span>
+												<span class="message-time">12:28 AM</span>
+												<div class="clearfix"></div>
+												<span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+											</div>
+										</div>
+									</a>
+								</li>
+								
+							</ul>
+						</div>
+						<div class="topnav-dropdown-footer">
+							<a href="chat.html">See all messages</a>
+						</div>
+					</div>
+				</div>
+
+                <div class="modal-body"  layout:fragment="content">
+							<form th:action="@{UpdateUtilisateur}" class="m-b-30" method="post" th:object="${utilisateur}">
+								<div class="row">
+                                    <div class="col-md-4">
+										<div class="form-group">
+											<label class="control-label">ID </label>
+											<input class="form-control" type="text" th:field="*{id_user}" readonly="readonly"/>
+										</div>
+									</div>
+									<div class="col-md-4">
+										<div class="form-group">
+											<label class="control-label">Prénom <span class="text-danger">*</span></label>
+											<input class="form-control" type="text" th:field="*{prenom}"/>
+                                            <span class="text-danger" th:errors="*{prenom}"></span>
+										</div>
+									</div>
+									<div class="col-md-4">
+										<div class="form-group">
+											<label class="control-label">Nom <span class="text-danger">*</span></label>
+											<input class="form-control" type="text" th:field="*{nom}"/>
+                                            <span class="text-danger" th:errors="*{nom}"></span>
+										</div>
+									</div>
+                                    <div class="col-md-6">
+										<div class="form-group">
+											<label class="control-label">CIN <span class="text-danger">*</span></label>
+											<input class="form-control" type="text" th:field="*{cin}"/>
+                                            <span class="text-danger" th:errors="*{cin}"></span>
+										</div>
+									</div>
+                                    <div class="col-md-6">
+										<label class="control-label">Date naissance <span class="text-danger">*</span></label>
+										<div class="form-group cal-icon">
+											<input class="form-control datetimepicker" type="text" th:field="*{date_naissance}"
+											onblur="valider_date(this)" onfocus="retirer_style(this)"/>
+                                            <span class="text-danger" th:errors="*{date_naissance}"></span>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label class="control-label">Login </label>
+											<input class="form-control" type="text" th:field="*{login}"/>
+                                            <span class="text-danger" th:errors="*{login}"></span>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label class="control-label">Email <span class="text-danger">*</span></label>
+											<input class="form-control" type="email" th:field="*{email}"/>
+                                            <span class="text-danger" th:errors="*{email}"></span>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label class="control-label">Mot de passe </label>
+											<input class="form-control" type="password" th:field="*{password}"/>
+                                            <span class="text-danger" th:errors="*{password}"></span>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label class="control-label">Confirmer mot de passe</label>
+											<input class="form-control" type="password"/>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label class="control-label">Téléphone <span class="text-danger">*</span></label>
+											<input class="form-control" type="text" th:field="*{telephone}"/>
+                                            <span class="text-danger" th:errors="*{telephone}"></span>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label class="control-label">Rôle</label>
+											<select class="select">
+												<option th:selected="${utilisateur.roles.get(0).roleLibelle == 'ADMIN'?true:false}">Admin</option>
+												<option th:selected="${utilisateur.roles.get(0).roleLibelle == 'RESP'?true:false}">Responsable</option>
+												<option th:selected="${utilisateur.roles.get(0).roleLibelle == 'PATR'?true:false}">Patrouilleur</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<ul class="list-group">
+												<li class="list-group-item">
+													<label class="control-label">Compte Active</label>
+													<div class="material-switch pull-right">
+														<input id="staff_module" type="checkbox"/>
+														<label for="staff_module" class="label-success"></label>
+													</div>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								
+								<div class="m-t-20 text-center">
+									<button class="btn btn-primary">Valider modification</button>
+								</div>
+							</form>
+						</div>
+
+            </div>
+			
+	
+        </div>
+		<div class="sidebar-overlay" data-reff="#sidebar"></div>
+        <script type="text/javascript" th:src="@{assets/js/jquery-3.2.1.min.js}"></script>
+        <script type="text/javascript" th:src="@{assets/js/bootstrap.min.js}"></script>
+		<script type="text/javascript" th:src="@{assets/js/jquery.dataTables.min.js}"></script>
+		<script type="text/javascript" th:src="@{assets/js/dataTables.bootstrap.min.js}"></script>
+		<script type="text/javascript" th:src="@{assets/js/jquery.slimscroll.js}"></script>
+		<script type="text/javascript" th:src="@{assets/js/select2.min.js}"></script>
+		<script type="text/javascript" th:src="@{assets/js/moment.min.js}"></script>
+		<script type="text/javascript" th:src="@{assets/js/bootstrap-datetimepicker.min.js}"></script>
+		<script type="text/javascript" th:src="@{assets/js/app.js}"></script>
+    </body>
+</html>
