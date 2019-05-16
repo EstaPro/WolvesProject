@@ -1,13 +1,29 @@
 package ma.rfidmaroc.patrolmanager.entities;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
+@Entity
+@SuppressWarnings("serial")
 public class Tag {
 
-	private String contenu;
+	@Id
+	@GeneratedValue
 	private Long id_tag;
+	@Column(length=50)
+	@NotEmpty
+	private String contenu;
 
 	public Tag(){
 
+	}
+	
+	public Tag(String contenu){
+		this.contenu=contenu;
 	}
 
 	public void finalize() throws Throwable {
