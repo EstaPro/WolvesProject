@@ -2,6 +2,42 @@ var oldmdp = null;
 
 var span_pos = 5;
 
+//Validation decimal
+function valider_decimal(elem)
+{
+    var exp= new RegExp("/^[+-]?\d+(\.\d+)?$/");
+
+    var val = elem.value;
+	var span = elem.parentNode.childNodes[span_pos];
+	span.innerHTML="";
+    span.style.display="none";
+    console.log(val);
+
+    if(val.length==0)
+	{
+		elem.style.border="1px solid red";
+		span.innerHTML = elem.name+" est obligatoire";
+		span.style.display="block";
+		return false;
+    }
+    else 
+    if(!exp.test(val))
+    {
+        elem.style.border="1px solid red";
+		span.innerHTML = elem.name+" est invalide";
+		span.style.display="block";
+		return false;
+    }
+    else
+    {
+        elem.style.border="1px solid green";
+		span.innerHTML="";
+		span.style.display="none";
+		return true;
+    }
+}
+
+
 //Validation nom et prenom
 function valider_string(elem)
 {

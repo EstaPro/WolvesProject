@@ -28,7 +28,7 @@ public class tagController {
 	TagServices tagService; 
 	
 	@RequestMapping(value = "/tag", method = RequestMethod.GET)
-	public String checkpointsController(Model model, @RequestParam(name = "contenu", defaultValue = "") String mc) {
+	public String tagsController(Model model, @RequestParam(name = "contenu", defaultValue = "") String mc) {
 		
 		model.addAttribute("tag", new TagForm());
 		

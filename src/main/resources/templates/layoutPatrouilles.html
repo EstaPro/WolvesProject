@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" />
     <link rel="shortcut icon" type="image/x-icon" th:href="@{/assets/img/favicon.png}" />
-    <title>Utilisateurs - NFC Patrol Systems</title>
+    <title>Patrouilles - NFC Patrol Systems</title>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" th:href="@{/assets/css/bootstrap.min.css}" />
     <link rel="stylesheet" type="text/css" th:href="@{/assets/css/font-awesome.min.css}" />
@@ -121,8 +121,8 @@
 								<a href="index.html"><i class="la la-dashboard"></i> <span>Accueil</span></a>
 							</li>
 							<li class="submenu">
-								<a href="#"><i class="la la-group"></i> <span> Employées</span> <span class="menu-arrow"></span></a>
-								<ul>
+								<a href="#" class=""><i class="la la-group"></i> <span> Employées</span> <span class="menu-arrow"></span></a>
+								<ul style="display: none;">
 									<li><a th:href="@{patrouilleurs}">Patrouilleurs</a></li>
 									<li><a th:href="@{responsables}">Responsables</a></li>
 									<li><a th:href="@{/admin/admins}">Administrateurs</a></li>
@@ -189,131 +189,49 @@
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 					<div class="modal-content modal-lg">
 						<div class="modal-header">
-							<h4 class="modal-title">Ajouter utilisateur</h4>
+							<h4 class="modal-title">Ajouter patrouille</h4>
 						</div>
 						<div class="modal-body">
-							<form th:action="@{SaveUtilisateur}" class="m-b-30" method="post" th:object="${utilisateur}">
+							<form th:action="@{SavePatrouille}" class="m-b-30" method="post" th:object="${patrouille}">
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
-											<label class="control-label">Prénom <span class="text-danger">*</span></label>
-											<input class="form-control" type="text" th:field="*{prenom}"
-											onblur="valider_string(this)" onfocus="retirer_style(this)"/>
-											<span class="text-danger"></span>
-                                            <span class="text-danger" th:errors="*{prenom}"></span>
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
 											<label class="control-label">Nom <span class="text-danger">*</span></label>
-											<input class="form-control" type="text" th:field="*{nom}"
+											<input class="form-control" type="text" th:field="*{nom_patr}"
 											onblur="valider_string(this)" onfocus="retirer_style(this)"/>
-											<span class="text-danger"></span>
-                                            <span class="text-danger" th:errors="*{nom}"></span>
+                                            <span class="text-danger" th:errors="*{nom_patr}"></span>
 										</div>
-									</div>
+                                    </div>
                                     <div class="col-md-6">
 										<div class="form-group">
-											<label class="control-label">CIN <span class="text-danger">*</span></label>
-											<input class="form-control" type="text" th:field="*{cin}"
-											onblur="valider_username(this)" onfocus="retirer_style(this)"/>
-											<span class="text-danger"></span>
-                                            <span class="text-danger" th:errors="*{cin}"></span>
-										</div>
-									</div>
-                                    <div class="col-md-6">
-										<label class="control-label">Date naissance <span class="text-danger">*</span></label>
-										<div class="form-group cal-icon">
-											<input class="form-control datetimepicker" type="text" th:field="*{date_naissance}"
-											onblur="valider_date(this)" onfocus="retirer_style(this)"/>
-                                            <span class="text-danger" th:errors="*{date_naissance}"></span>
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label class="control-label">Login <span class="text-danger">*</span></label>
-											<input class="form-control" type="text" th:field="*{login}"
-											onblur="valider_username(this)" onfocus="retirer_style(this)"/>
-											<span class="text-danger"></span>
-                                            <span class="text-danger" th:errors="*{login}"></span>
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label class="control-label">Email</label>
-											<input class="form-control" type="email" th:field="*{email}"
-											onblur="valider_email(this)" onfocus="retirer_style(this)"/>
-											<span class="text-danger"></span>
-                                            <span class="text-danger" th:errors="*{email}"></span>
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label class="control-label">Mot de passe <span class="text-danger">*</span></label>
-											<input class="form-control" type="password"  th:field="*{password}"	
-											required="true" maxlength="30" 
-											onblur="valider_mdp(this)" onfocus="retirer_style(this)"/>
+											<label class="control-label">Duree moyenne <span class="text-danger">*</span></label>
+											<input class="form-control" type="text" th:field="*{dureeMoyenne_min}"
+                                            onblur="valider_decimal(this)" onfocus="retirer_style(this)"/>
                                             <span class="text-danger"></span>
-											<span class="text-danger" th:errors="*{password}"></span>
+                                            <span class="text-danger" th:errors="*{dureeMoyenne_min}"></span>
 										</div>
-									</div>
-									<div class="col-md-6">
+                                    </div>
+                                    <div class="col-md-6">
 										<div class="form-group">
-											<label class="control-label">Confirmer mot de passe <span class="text-danger">*</span></label>
-											<input class="form-control" type="password" 
-											required="true" maxlength="30" onblur="valider_mdp_con(oldmdp,this)" onfocus="retirer_style(this)"/>
-											<span class="error"></span>
+											<label class="control-label">Marge d'erreur <span class="text-danger">*</span></label>
+											<input class="form-control" type="text" th:field="*{margeErr_min}"
+                                            onblur="valider_decimal(this)" onfocus="retirer_style(this)"/>
+                                            <span class="text-danger"></span>
+                                            <span class="text-danger" th:errors="*{margeErr_min}"></span>
 										</div>
 									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label class="control-label">Téléphone <span class="text-danger">*</span></label>
-											<input class="form-control" type="text" th:field="*{telephone}"
-											onblur="valider_numero(this)" onfocus="retirer_style(this)"/>
-											<span class="text-danger"></span>
-                                            <span class="text-danger" th:errors="*{telephone}"></span>
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label class="control-label">Rôle</label>
-											<select class="select" th:field="*{role}">
-												<option value="admin">Admin</option>
-												<option value="resp">Responsable</option>
-												<option value="patr">Patrouilleur</option>
-											</select>
-										</div>
-									</div>
+									
 								</div>
 								
 								<div class="m-t-20 text-center">
-									<button class="btn btn-primary">Créer utilisateur</button>
+									<button class="btn btn-primary">Créer patrouille</button>
 								</div>
 							</form>
 						</div>
 					</div>
 				</div>
 			</div>
-			
-			<div id="delete_user" class="modal custom-modal fade" role="dialog">
-				<div class="modal-dialog">
-					<div class="modal-content modal-md">
-						<div class="modal-header">
-							<h4 class="modal-title">Delete Employee</h4>
-						</div>
-						<form>
-							<div class="modal-body card-box">
-								<p>Vous etes sur de supprimer cet utilisateur ?</p>
-								
-							<div class="m-t-20"> <a href="#" class="btn btn-default" data-dismiss="modal">Fermer</a>
-								<button type="submit" class="btn btn-danger">Supprimer</button>
-							</div>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-            
+			            
                 <footer class="navbar-fixed-bottom">
                     <div class="container text-right">
                         <small>

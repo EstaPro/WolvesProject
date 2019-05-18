@@ -6,7 +6,7 @@
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0"/>
         <link rel="shortcut icon" type="image/x-icon" th:href="@{assets/img/favicon.png}"/>
-        <title>EditCheckpoints - NFC Patrol System</title>
+        <title>EditPatrouilles - NFC Patrol System</title>
 		<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" rel="stylesheet"/>
         <link rel="stylesheet" type="text/css" th:href="@{assets/css/bootstrap.min.css}"/>
         <link rel="stylesheet" type="text/css" th:href="@{assets/css/font-awesome.min.css}"/>
@@ -94,19 +94,33 @@
 				
 
                 <div class="modal-body"  layout:fragment="content">
-							<form th:action="@{UpdateCheckpoint}" class="m-b-30" method="post" th:object="${checkpoint}">
+							<form th:action="@{UpdatePatrouille}" class="m-b-30" method="post" th:object="${patrouille}">
 								<div class="row">
                                     <div class="col-md-4">
 										<div class="form-group">
 											<label class="control-label">ID </label>
-											<input class="form-control" type="text" th:field="*{id_checkpoint}" readonly="readonly"/>
+											<input class="form-control" type="text" th:field="*{id_patrouille}" readonly="readonly"/>
 										</div>
 									</div>
 									<div class="col-md-4">
 										<div class="form-group">
-											<label class="control-label">Geo-localisation <span class="text-danger">*</span></label>
-											<input class="form-control" type="text" th:field="*{geo_location}"/>
-                                            <span class="text-danger" th:errors="*{geo_location}"></span>
+											<label class="control-label">Nom <span class="text-danger">*</span></label>
+											<input class="form-control" type="text" th:field="*{nom_patr}"/>
+                                            <span class="text-danger" th:errors="*{nom_patr}"></span>
+										</div>
+                                    </div>
+                                    <div class="col-md-4">
+										<div class="form-group">
+											<label class="control-label">Duree moyenne <span class="text-danger">*</span></label>
+											<input class="form-control" type="text" th:field="*{dureeMoyenne_min}"/>
+                                            <span class="text-danger" th:errors="*{dureeMoyenne_min}"></span>
+										</div>
+                                    </div>
+                                    <div class="col-md-4">
+										<div class="form-group">
+											<label class="control-label">Marge d'erreur <span class="text-danger">*</span></label>
+											<input class="form-control" type="text" th:field="*{margeErr_min}"/>
+                                            <span class="text-danger" th:errors="*{margeErr_min}"></span>
 										</div>
 									</div>
 								</div>
